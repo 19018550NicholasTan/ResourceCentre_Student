@@ -36,7 +36,8 @@ public class ResourceCentreTest {
 	public void addCamcorderTest() {
 		// Item list is not null, so that can add a new item
 		assertNotNull("Test if there is valid Camcorder arraylist to add to", camcorderList);
-		
+		ResourceCentre.addCamcorder(camcorderList, cc1);
+		Boolean isReturned = ResourceCentre.doReturnCamcorder(camcorderList, "CC0011");
 		//Given an empty list, after adding 1 item, the size of the list is 1
 		ResourceCentre.addCamcorder(camcorderList, cc1);		
 		assertEquals("Test if that Camcorder arraylist size is 1?", 1, camcorderList.size());
@@ -52,6 +53,7 @@ public class ResourceCentreTest {
 	public void addChromebookTest() {
 		//fail("Not yet implemented");
 		// write your code here
+
 	}
 	
 	@Test
@@ -82,12 +84,30 @@ public class ResourceCentreTest {
 	public void retrieveAllChromebookTest() {
 		//fail("Not yet implemented");
 		// write your code here
+		
 	}
 
 	@Test
 	public void doLoanCamcorderTest() {
 		//fail("Not yet implemented");
 		// write your code here
+		
+		//normal
+		Boolean ok = ResourceCentre.doLoanCamcorder(camcorderList,"CC0011", "8-8-2020");
+		
+		assertTrue("Test if an available item is ok to loan? ", ok );
+		//error
+		ResourceCentre.addCamcorder(camcorderList,cc2);
+		cc2.setIsAvailable(false);
+		ok = ResourceCentre.doLoanCamcorder(camcorderList,"CC0011", "8-8-2020");
+		
+		assertFalse("Test that unavailable item is not ok to loan?", ok);
+		
+		ok = ResourceCentre.doLoanCamcorder(camcorderList, "CC0013",  "8-8-2020");
+		assertFalse("Test that non existing item is not ok to loan", ok);
+		
+		
+		
 		
 	}
 	
@@ -101,13 +121,20 @@ public class ResourceCentreTest {
 	public void doReturnCamcorderTest() {
 		//fail("Not yet implemented");
 		// write your code here
+		Boolean isReturned = ResourceCentre.doReturnCamcorder(camcorderList, "CC0011");
 		
 	}
 	@Test
 	public void doReturnChromebookTest() {
 		//fail("Not yet implemented");
 		// write your code here
-	}
+		
+		
+				
+			}
+		
+		
+	
 	
 	@After
 	public void tearDown() throws Exception {
