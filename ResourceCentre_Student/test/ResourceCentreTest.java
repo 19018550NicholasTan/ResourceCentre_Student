@@ -97,7 +97,7 @@ public class ResourceCentreTest {
 		
 		assertTrue("Test if an available item is ok to loan? ", ok );
 		//error
-		ResourceCentre.addCamcorder(camcorderList,cc2);
+		ResourceCentre.addCamcorder(camcorderList,cc1);
 		cc2.setIsAvailable(false);
 		ok = ResourceCentre.doLoanCamcorder(camcorderList,"CC0011", "8-8-2020");
 		
